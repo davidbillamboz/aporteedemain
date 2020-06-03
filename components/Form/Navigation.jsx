@@ -9,10 +9,10 @@ import { Context } from './Wizard';
 const Navigation = ({ onNext, onPrevious, nextEnabled }) => (
   <Context.Consumer>
     {({ loadPreviousStep, loadNextStep, isFirstStep }) => (
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center items-center mt-8">
         <button
           type="button"
-          className={`rounded-full bg-white text-deepKoamaru shadow w-20 h-20 flex items-center justify-center mr-5 hover:opacity-75 ${
+          className={`rounded-full bg-white text-deepKoamaru shadow w-12 h-12 sm:w-20 sm:h-20 flex-shrink-0 flex items-center justify-center mr-5 hover:opacity-75 ${
             isFirstStep ? 'invisible' : ''
           }`}
           onClick={async () => (await onPrevious()) && loadPreviousStep()}

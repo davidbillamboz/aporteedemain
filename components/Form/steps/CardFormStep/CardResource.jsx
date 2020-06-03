@@ -1,5 +1,9 @@
 import React from 'react';
-import { BookOpen as BookOpenIcon, Mic as MicIcon } from 'react-feather';
+import {
+  BookOpen as BookOpenIcon,
+  Mic as MicIcon,
+  Video as VideoIcon,
+} from 'react-feather';
 import { resource as resourcePropType } from '../../../../proptypes/card';
 
 const CardResource = ({ resource }) => {
@@ -11,24 +15,28 @@ const CardResource = ({ resource }) => {
   } else if (resource.type === 'listen') {
     TypeIcon = MicIcon;
     typeTitle = 'Écouter';
+  } else if (resource.type === 'see') {
+    TypeIcon = VideoIcon;
+    typeTitle = 'Voir';
   }
 
   return (
     <div className="border-solid border-b border-gray border-opacity-25 py-6 last:border-b-0">
-      <div className="px-2 mb-2 cursor-default">
-        {resource.type === 'read' && <></>}
-        <TypeIcon className="inline-block w-6 h-auto" />
-        <span className="inline-block ml-2 uppercase text-micro">
-          {typeTitle}
-        </span>
-      </div>
+      {resource.type && (
+        <div className="px-2 mb-2 cursor-default">
+          <TypeIcon className="inline-block w-6 h-auto" />
+          <span className="inline-block ml-2 uppercase text-micro">
+            {typeTitle}
+          </span>
+        </div>
+      )}
       <a
-        href={resource.link.url}
+        href={(resource.link && resource.link.url) || ''}
         target="_blank"
         rel="noreferrer"
         className="group"
       >
-        {resource.image && (
+        {resource.image && resource.image.url && (
           <div className="group-hover:opacity-75">
             <img
               src={resource.image.url}

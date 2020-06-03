@@ -67,20 +67,24 @@ const CardFormStep = ({
               }
             />
           ))}
-          <h3 className="text-2xl font-bold leading-none mt-12 mb-2">
-            {card.commitments2title}
-          </h3>
-          {card.commitments2.map((commitment, index) => (
-            <CardCommitment
-              key={index}
-              commitment={commitment}
-              checked={selectedCommitments.includes(`2-${index}`)}
-              onChange={(isSelected) =>
-                onCommitmentChange(`2-${index}`, isSelected)
-              }
-            />
-          ))}
-          {card.resources.length && (
+          {card.commitments2title && card.commitments2.length && (
+            <>
+              <h3 className="text-2xl font-bold leading-none mt-12 mb-2">
+                {card.commitments2title}
+              </h3>
+              {card.commitments2.map((commitment, index) => (
+                <CardCommitment
+                  key={index}
+                  commitment={commitment}
+                  checked={selectedCommitments.includes(`2-${index}`)}
+                  onChange={(isSelected) =>
+                    onCommitmentChange(`2-${index}`, isSelected)
+                  }
+                />
+              ))}
+            </>
+          )}
+          {!!card.resources.length && (
             <div className="rounded-large bg-serenade mt-4 py-10 relative">
               <div className="text-2xl text-center leading-none font-bold">
                 Pour aller plus loin

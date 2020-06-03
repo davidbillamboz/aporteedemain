@@ -7,14 +7,24 @@ const CardContentStep = ({ card }) => (
   <Step>
     <div className="md:flex md:items-center">
       <div className="hidden md:block md:w-1/2">
-        <img src={card.image.url} alt={card.image.alt} className="w-full" />
+        <div className="md:aspect-ratio-square md:relative">
+          <img
+            src={card.image.url}
+            alt={card.image.alt}
+            className="w-full absolute top-0 left-0"
+          />
+        </div>
       </div>
       <div className="text-center md:text-left md:pl-4 md:w-1/2">
         <h1 className="text-5xl font-bold leading-none md:text-15">
           {card.title}
         </h1>
-        <div className="mt-4 md:hidden">
-          <img src={card.image.url} alt={card.image.alt} />
+        <div className="aspect-ratio-square relative mt-4 md:hidden">
+          <img
+            src={card.image.url}
+            alt={card.image.alt}
+            className="w-full absolute top-0 left-0"
+          />
         </div>
         <h2 className="text-2xl font-bold leading-none mt-4">
           {card.subtitle}
@@ -29,12 +39,12 @@ const CardContentStep = ({ card }) => (
       Les chiffres qui ne trompent pas
     </div>
     <div className="md:grid md:grid-cols-3 md:gap-4">
-      {card.numbers.map((number, index) => (
+      {card.numbers.slice(0, 3).map((number, index) => (
         <div
           key={index}
           className="py-6 border-solid border-b border-gray border-opacity-25 md:border-none"
         >
-          <div className="text-chelseaCucumber text-7xl sm:text-8xl md:text-6xl lg:text-7xl font-bold leading-none mb-4">
+          <div className="text-chelseaCucumber text-7xl overflow-hidden font-bold leading-none mb-4 sm:text-8xl md:text-6xl lg:text-7xl">
             {number.value}
           </div>
           <div>

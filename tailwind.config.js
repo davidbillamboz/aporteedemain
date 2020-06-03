@@ -29,7 +29,12 @@ module.exports = {
         '7xl': '5rem',
         '8xl': '6rem',
       },
+      width: {
+        '28': '7rem',
+        '72': '18rem',
+      },
       height: {
+        '28': '7rem',
         px2: '2px',
       },
       maxWidth: {

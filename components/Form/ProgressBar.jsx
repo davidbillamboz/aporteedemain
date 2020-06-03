@@ -6,6 +6,11 @@ import { getCardById } from './utils';
 
 const ProgressBar = ({ selectedCards, cards }) => {
   const { index } = useContext(Context);
+
+  if (!index) {
+    return Fragment;
+  }
+
   const baseIndex = index - 1;
 
   const getStepProgress = (stepIndex) => {
