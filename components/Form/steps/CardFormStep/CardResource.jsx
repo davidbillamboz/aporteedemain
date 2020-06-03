@@ -37,11 +37,11 @@ const CardResource = ({ resource }) => {
         className="group"
       >
         {resource.image && resource.image.url && (
-          <div className="group-hover:opacity-75">
+          <div className="group-hover:opacity-75 aspect-ratio-16/9 relative">
             <img
               src={resource.image.url}
               alt={resource.image.alt}
-              className="w-full h-auto"
+              className="w-full absolute top-0 left-0"
             />
           </div>
         )}
