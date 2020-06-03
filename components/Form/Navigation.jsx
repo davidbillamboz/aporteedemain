@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon,
-} from 'react-feather';
+import { ChevronLeft as ChevronLeftIcon } from 'react-feather';
+import MainButton from '../buttons/MainButton';
 import { Context } from './Wizard';
 
 const Navigation = ({ onNext, onPrevious, nextEnabled }) => (
@@ -19,18 +17,13 @@ const Navigation = ({ onNext, onPrevious, nextEnabled }) => (
         >
           <ChevronLeftIcon className="w-10 h-auto" />
         </button>
-        <button
-          type="button"
-          className={`rounded-full bg-chelseaCucumber ${
-            nextEnabled ? 'hover:bg-opacity-95' : 'opacity-50 cursor-default'
-          } text-white font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow`}
+        <MainButton
+          title="continuer"
           onClick={async () =>
             nextEnabled && (await onNext()) && loadNextStep()
           }
-        >
-          <ChevronRightIcon className="inline-block mr-2 w-10 h-auto" />
-          <span className="inline-block">continuer</span>
-        </button>
+          disabled={!nextEnabled}
+        />
       </div>
     )}
   </Context.Consumer>
