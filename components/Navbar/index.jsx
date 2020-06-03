@@ -1,4 +1,6 @@
 import React from 'react';
+import NextLink from 'next/link';
+
 import Burger from './Burger';
 
 const Navbar = () => {
@@ -9,7 +11,9 @@ const Navbar = () => {
           <Burger />
         </div>
         <div className="text-2xl font-bold font-krub uppercase">
-          À Portée de Main
+          <NextLink href="/">
+            <a>À Portée de Main</a>
+          </NextLink>
         </div>
       </div>
     </div>
