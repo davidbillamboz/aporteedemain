@@ -25,7 +25,7 @@ const ChoicesStep = ({
   };
 
   return (
-    <Step onNext={onNext}>
+    <Step onNext={onNext} isValid={selectedCards.length > 0}>
       {cards.map((card) => (
         <div key={card.id} onClick={() => onClickCard(card.id)}>
           {card.title}

@@ -6,7 +6,11 @@ const FinalStep = () => {
     // validate data
     return true;
   };
-  return <Step onNext={onNext}>final</Step>;
+  return (
+    <Step onNext={onNext} withoutNavigation>
+      final
+    </Step>
+  );
 };
 
 export default FinalStep;
