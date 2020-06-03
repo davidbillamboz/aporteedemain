@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className="mr-6 md:hidden">
           <Burger />
         </div>
-        <div className="text-2xl font-bold font-krub uppercase">
+        <div className="text-2xl font-bold font-krub uppercase leading-none">
           <NextLink href="/">
             <a>À Portée de Main</a>
           </NextLink>
