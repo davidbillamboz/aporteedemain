@@ -10,7 +10,12 @@ class MyDocument extends Document {
   render() {
     return (
       <Html className="bg-white antialiased">
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body className="font-body">
           <Main />
           <NextScript />
