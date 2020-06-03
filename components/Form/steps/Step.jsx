@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Navigation from '../Navigation';
 
 const Step = ({ children, onPrevious, onNext, isValid, withoutNavigation }) => (
-  <div>
+  <div className="container mt-4 lg:mt-6 mx-auto p-4 text-deepKoamaru">
     {children}
     {!withoutNavigation && (
       <Navigation
