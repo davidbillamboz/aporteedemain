@@ -16,7 +16,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="font-body">
+        <body className="font-body text-deepKoamaru">
           <Main />
           <NextScript />
         </body>
