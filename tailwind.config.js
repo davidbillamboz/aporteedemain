@@ -21,6 +21,7 @@ module.exports = {
         krub: ['Krub', 'sans-serif'],
       },
       fontSize: {
+        '0': '0',
         micro: '0.625rem',
         '6': '1.5rem',
         '7': '1.75rem',
