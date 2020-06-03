@@ -31,7 +31,9 @@ const Wizard = ({ children, stepCount }) => {
     if (!(topRef && topRef.current)) {
       return;
     }
-    window.scrollTo(0, topRef.current.offsetTop);
+    if (window.scrollY > 0) {
+      window.scrollTo(0, topRef.current.offsetTop);
+    }
   }, [index]);
 
   return (
