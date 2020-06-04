@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
-import { ChevronRight as ChevronRightIcon } from 'react-feather';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const Button = ({ children, ...rest }) => (
   <button type="button" {...rest}>
@@ -35,7 +36,10 @@ const MainButton = ({ title, disabled, href, ...rest }) => {
       } text-white font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow`}
       {...rest}
     >
-      <ChevronRightIcon className="inline-block mr-2 w-10 h-auto" />
+      <FontAwesomeIcon
+        icon={faChevronRight}
+        className="inline-block mr-2 w-10 h-auto"
+      />
       <span className="inline-block">{title}</span>
     </Component>
   );

@@ -12,7 +12,7 @@ class MyDocument extends Document {
       <Html className="bg-white antialiased">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Krub:wght@400;700&family=Montserrat:wght@400;600;700;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;700&family=Montserrat:wght@400;600;700;800&display=swap"
             rel="stylesheet"
           />
         </Head>
