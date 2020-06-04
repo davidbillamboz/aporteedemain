@@ -50,7 +50,7 @@ IndexPage.propTypes = {
   text: textPropType.isRequired,
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const homePage = await fetchHomePage();
   return {
     props: {
@@ -59,6 +59,7 @@ export async function getServerSideProps() {
       catchline: homePage.catchline,
       text: homePage.text,
     },
+    unstable_revalidate: 5,
   };
 }
 

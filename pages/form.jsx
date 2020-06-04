@@ -14,12 +14,13 @@ FormPage.propTypes = {
   cards: PropTypes.arrayOf(cardPropType).isRequired,
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const cards = await fetchAllCards();
   return {
     props: {
       cards,
     },
+    unstable_revalidate: 5,
   };
 }
 
