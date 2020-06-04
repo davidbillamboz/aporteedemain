@@ -19,7 +19,7 @@ export default PropTypes.shape({
   subtitle: PropTypes.string.isRequired,
   text: textPropType.isRequired,
   numbers: PropTypes.arrayOf(cardNumberPropType).isRequired,
-  numberssources: PropTypes.string.isRequired,
+  numberssources: PropTypes.string,
   question: PropTypes.string.isRequired,
   commitments1: PropTypes.arrayOf(cardCommitmentPropType).isRequired,
   commitments2title: PropTypes.string.isRequired,
