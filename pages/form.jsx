@@ -14,7 +14,7 @@ FormPage.propTypes = {
   cards: PropTypes.arrayOf(cardPropType).isRequired,
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const cards = await fetchAllCards();
   return {
     props: {
