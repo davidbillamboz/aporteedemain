@@ -1,20 +1,29 @@
 import React from 'react';
+import Head from 'next/head';
+import DefaultErrorPage from 'next/error';
 import { fetchCard, fetchAllCards } from '../../lib/prismic';
 import CardContent from '../../components/Card/Content';
 import cardPropType from '../../proptypes/card';
 import CardForm from '../../components/Card/Form';
 
-const CardPage = ({ card }) => (
-  <>
-    {!card && <>404</>}
-    {card && (
-      <div className="container mx-auto py-12 px-4">
-        <CardContent card={card} />
-        <CardForm card={card} />
-      </div>
-    )}
-  </>
-);
+const CardPage = ({ card }) => {
+  if (!card) {
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <DefaultErrorPage statusCode={404} />
+      </>
+    );
+  }
+  return (
+    <div className="container mx-auto py-12 px-4">
+      <CardContent card={card} />
+      <CardForm card={card} />
+    </div>
+  );
+};
 
 CardPage.propTypes = {
   card: cardPropType,
