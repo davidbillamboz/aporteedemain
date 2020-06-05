@@ -40,7 +40,7 @@ const Navbar = () => {
             <a>À Portée de Main</a>
           </NextLink>
         </div>
-        <div className="hidden md:flex flex-grow justify-end">
+        <div className="hidden md:block flex-grow">
           <NavHorizontal />
         </div>
       </div>
