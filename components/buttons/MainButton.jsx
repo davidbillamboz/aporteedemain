@@ -31,9 +31,9 @@ const MainButton = ({ title, disabled, href, ...rest }) => {
   return (
     <Component
       href={href}
-      className={`rounded-full bg-chelseaCucumber ${
+      className={`rounded-full bg-chelseaCucumber text-white ${
         !disabled ? 'hover:bg-opacity-95' : 'opacity-50 cursor-default'
-      } text-white font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow`}
+      } font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow`}
       {...rest}
     >
       <FontAwesomeIcon
