@@ -3,8 +3,8 @@ import linkPropType from '../link';
 import imagePropType from '../image';
 
 export default PropTypes.shape({
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  link: linkPropType.isRequired,
-  image: imagePropType.isRequired,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  link: linkPropType,
+  image: imagePropType,
 });
