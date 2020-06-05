@@ -2,7 +2,7 @@ import { PrismicClient } from '../../lib/prismic';
 
 function linkResolver(doc) {
   if (doc.type === 'card') {
-    return `/card/${doc.uid}`;
+    return `/cards/${doc.uid}`;
   }
   if (doc.type === 'page') {
     return `/${doc.slug}`;
