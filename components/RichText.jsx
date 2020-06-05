@@ -32,7 +32,9 @@ const htmlSerializer = (type, element, content, children, key) => {
 };
 
 const RichText = ({ text }) => (
-  <PrismicRichText render={text} htmlSerializer={htmlSerializer} />
+  <div className="richtext">
+    <PrismicRichText render={text} htmlSerializer={htmlSerializer} />
+  </div>
 );
 
 RichText.propTypes = {

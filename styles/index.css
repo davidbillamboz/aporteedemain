@@ -3,4 +3,6 @@
 @tailwind components;
 /* purgecss end ignore */
 
+@import "./richtext.css";
+
 @tailwind utilities;
