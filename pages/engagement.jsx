@@ -4,13 +4,13 @@ import cardPropType from '../proptypes/card';
 import Form from '../components/Form';
 import { fetchAllCards } from '../lib/prismic';
 
-const FormPage = ({ cards }) => (
+const EngagementPage = ({ cards }) => (
   <>
     <Form cards={cards} />
   </>
 );
 
-FormPage.propTypes = {
+EngagementPage.propTypes = {
   cards: PropTypes.arrayOf(cardPropType).isRequired,
 };
 
@@ -24,4 +24,4 @@ export async function getStaticProps() {
   };
 }
 
-export default FormPage;
+export default EngagementPage;
