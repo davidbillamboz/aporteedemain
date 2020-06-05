@@ -5,7 +5,7 @@ function linkResolver(doc) {
     return `/cards/${doc.uid}`;
   }
   if (doc.type === 'page') {
-    return `/${doc.slug}`;
+    return `/${doc.uid}`;
   }
   if (doc.type === 'homepage') {
     return '/';
