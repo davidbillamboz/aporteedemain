@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
   const page = await fetchPage(params.slug);
   return {
     props: {
-      ...page,
+      page,
     },
     unstable_revalidate: 5,
   };
