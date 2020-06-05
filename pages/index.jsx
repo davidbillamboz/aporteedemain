@@ -35,7 +35,7 @@ const IndexPage = ({ keyVisual, keyVisualMobile, catchline, text }) => (
           <RichTech text={text} />
         </div>
         <div className="mt-6 flex justify-center">
-          <MainButton title="Découvrez" href="/form" />
+          <MainButton title="Découvrez" href="/engagement" />
         </div>
         <div className="mt-2">Déjà 1285 engagé·e·s</div>
       </div>
