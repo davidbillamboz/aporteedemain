@@ -44,6 +44,7 @@ module.exports = {
       inset: {
         full: '100%',
         '2': '0.5rem',
+        '20': '5rem',
       },
       spacing: {
         '0.75': '0.1875rem',
