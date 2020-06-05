@@ -52,6 +52,7 @@ export async function getStaticPaths() {
   const paths = pages?.map(({ uid }) => `/${uid}`) || [];
   return {
     paths,
+    fallback: true,
   };
 }
 
