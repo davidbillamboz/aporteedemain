@@ -20,12 +20,14 @@ const getIcon = (network) => {
   }
 };
 
-const SocialButton = ({ network }) => {
+const SocialButton = ({ network, size }) => {
   const icon = getIcon(network);
   return (
     <a
       href="/"
-      className="flex items-center justify-center bg-white rounded-full text-blueZodiac text-2xl w-16 h-16 hover:bg-opacity-75"
+      className={`flex items-center justify-center bg-white rounded-full text-blueZodiac text-2xl ${
+        size === 'default' ? 'w-16 h-16' : 'w-12 h-12'
+      } hover:bg-opacity-75`}
     >
       <FontAwesomeIcon icon={icon} className="" />
     </a>
@@ -34,6 +36,11 @@ const SocialButton = ({ network }) => {
 
 SocialButton.propTypes = {
   network: PropTypes.oneOf(['facebook', 'twitter', 'instagram']).isRequired,
+  size: PropTypes.oneOf(['small', 'default']),
+};
+
+SocialButton.defaultProps = {
+  size: 'default',
 };
 
 export default SocialButton;

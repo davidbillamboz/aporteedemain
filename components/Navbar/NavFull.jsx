@@ -1,6 +1,6 @@
 import React from 'react';
 import NextLink from 'next/link';
-import SocialButton from '../SocialButton';
+import SocialButtons from '../SocialButtons';
 
 const NavFull = () => (
   <div className="p-4 flex flex-col justify-center w-full sm:items-center">
@@ -25,15 +25,7 @@ const NavFull = () => (
       Suivez-nous
     </div>
     <div className="mt-6 sm:mx-auto">
-      <div className="inline-block mr-6">
-        <SocialButton network="facebook" />
-      </div>
-      <div className="inline-block mr-6">
-        <SocialButton network="twitter" />
-      </div>
-      <div className="inline-block">
-        <SocialButton network="instagram" />
-      </div>
+      <SocialButtons />
     </div>
   </div>
 );

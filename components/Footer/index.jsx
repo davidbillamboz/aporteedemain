@@ -1,6 +1,7 @@
 import React from 'react';
 import NextLink from 'next/link';
 import Link from './Link';
+import SocialButtons from '../SocialButtons';
 
 const Footer = () => (
   <div className="bg-deepKoamaru">
@@ -16,6 +17,9 @@ const Footer = () => (
         <Link href="/manifesto">Le Manifesto</Link>
         <Link href="/mentions-legales">Mentions légales</Link>
       </nav>
+      <div className="mt-6 sm:mx-auto">
+        <SocialButtons size="small" />
+      </div>
     </div>
   </div>
 );
