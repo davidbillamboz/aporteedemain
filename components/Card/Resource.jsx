@@ -4,7 +4,7 @@ import {
   Mic as MicIcon,
   Video as VideoIcon,
 } from 'react-feather';
-import { resource as resourcePropType } from '../../../../proptypes/card';
+import { resource as resourcePropType } from '../../proptypes/card';
 
 const CardResource = ({ resource }) => {
   let TypeIcon;

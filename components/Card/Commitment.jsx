@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SVG from 'react-inlinesvg';
-import { commitment as commitmentPropType } from '../../../../proptypes/card';
-import Checkbox from '../../../Checkbox';
-import RichText from '../../../RichText';
+import { commitment as commitmentPropType } from '../../proptypes/card';
+import Checkbox from '../Checkbox';
+import RichText from '../RichText';
 
 const CardCommitment = ({ commitment, checked: checkedInitial, onChange }) => {
   const [checked, setChecked] = useState(checkedInitial);
