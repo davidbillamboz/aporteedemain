@@ -4,25 +4,34 @@ import { fetchPage, fetchAllPages } from '../lib/prismic';
 import textPropType from '../proptypes/text';
 import RichText from '../components/RichText';
 
-const ContentPage = ({ title, text }) => (
-  <div className="container mx-auto py-12 px-4">
-    <h1 className="text-4xl font-bold leading-none mb-8">{title}</h1>
-    <RichText text={text} />
-  </div>
+const ContentPage = ({ page }) => (
+  <>
+    {!page && <>404</>}
+    {page && (
+      <div className="container mx-auto py-12 px-4">
+        <h1 className="text-4xl font-bold leading-none mb-8">{page.title}</h1>
+        <RichText text={page.text} />
+      </div>
+    )}
+  </>
 );
 
 ContentPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  text: textPropType.isRequired,
+  page: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    text: textPropType.isRequired,
+  }),
+};
+
+ContentPage.defaultProps = {
+  page: null,
 };
 
 export async function getStaticProps({ params }) {
-  const data = await fetchPage(params.slug);
-
+  const page = await fetchPage(params.slug);
   return {
     props: {
-      title: data.title,
-      text: data.text,
+      ...page,
     },
     unstable_revalidate: 5,
   };
@@ -30,8 +39,9 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const pages = await fetchAllPages();
+  const paths = pages?.map(({ uid }) => `/${uid}`) || [];
   return {
-    paths: pages?.map(({ uid }) => `/${uid}`) || [],
+    paths,
     fallback: true,
   };
 }

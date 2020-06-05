@@ -7,11 +7,13 @@ const CardContent = ({ card }) => (
     <div className="md:flex md:items-center">
       <div className="hidden md:block md:w-1/2">
         <div className="md:aspect-ratio-square md:relative">
-          <img
-            src={card.image.url}
-            alt={card.image.alt}
-            className="w-full absolute top-0 left-0"
-          />
+          {card.image && (
+            <img
+              src={card.image.url}
+              alt={card.image.alt}
+              className="w-full absolute top-0 left-0"
+            />
+          )}
         </div>
       </div>
       <div className="text-center md:text-left md:pl-4 md:w-1/2">
@@ -19,11 +21,13 @@ const CardContent = ({ card }) => (
           {card.title}
         </h1>
         <div className="aspect-ratio-square relative mt-4 md:hidden">
-          <img
-            src={card.image.url}
-            alt={card.image.alt}
-            className="w-full absolute top-0 left-0"
-          />
+          {card.image && (
+            <img
+              src={card.image.url}
+              alt={card.image.alt}
+              className="w-full absolute top-0 left-0"
+            />
+          )}
         </div>
         <h2 className="text-2xl font-bold leading-none mt-4">
           {card.subtitle}
