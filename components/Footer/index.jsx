@@ -6,7 +6,7 @@ import SocialButtons from '../SocialButtons';
 const Footer = () => (
   <div className="bg-deepKoamaru">
     <div className="container mx-auto text-center text-white py-24">
-      <div className="text-2xl font-bold font-krub uppercase leading-none">
+      <div className="text-2xl font-bold font-krub uppercase leading-none hover:text-riptide">
         <NextLink href="/">
           <a>À Portée de Main</a>
         </NextLink>
