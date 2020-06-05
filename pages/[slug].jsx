@@ -36,12 +36,13 @@ ContentPage.defaultProps = {
   page: null,
 };
 
-export async function getStaticProps({ params }) {
-  const page = await fetchPage(params.slug);
+export async function getStaticProps({ params, preview = false, previewData }) {
+  const page = await fetchPage(params.slug, previewData);
 
   return {
     props: {
       page,
+      preview,
     },
     unstable_revalidate: 5,
   };
