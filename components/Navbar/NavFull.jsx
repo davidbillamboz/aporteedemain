@@ -11,7 +11,7 @@ const NavFull = () => (
         </NextLink>
       </div>
       <div className="leading-none font-bold text-4xl mb-8 hover:underline hover:text-riptide">
-        <NextLink href="/manifesto">
+        <NextLink href="/[slug]" as="/manifesto">
           <a>Manifesto</a>
         </NextLink>
       </div>

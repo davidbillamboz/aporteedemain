@@ -14,8 +14,12 @@ const Footer = () => (
       <nav className="mt-4 md:flex md:justify-center">
         <Link href="/contact">Contact</Link>
         <Link href="/kit">Télécharger le kit</Link>
-        <Link href="/manifesto">Le Manifesto</Link>
-        <Link href="/mentions-legales">Mentions légales</Link>
+        <Link href="/[slug]" as="manifesto">
+          Le Manifesto
+        </Link>
+        <Link href="/[slug]" as="/mentions-legales">
+          Mentions légales
+        </Link>
       </nav>
       <div className="mt-6 sm:mx-auto">
         <SocialButtons size="small" />

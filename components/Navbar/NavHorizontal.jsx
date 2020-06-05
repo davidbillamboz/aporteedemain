@@ -6,12 +6,12 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 const NavHorizontal = () => (
   <div className="flex items-center justify-end">
     <div className="leading-tight font-krub font-bold mr-10 hover:underline hover:text-riptide">
-      <NextLink href="/manifesto">
+      <NextLink href="/[slug]" as="/manifesto">
         <a>Manifesto</a>
       </NextLink>
     </div>
     {/* <div className="leading-tight font-krub font-bold mr-10 hover:underline hover:text-riptide">
-      <NextLink href="/soutiens">
+      <NextLink href="/[slug]" as="/soutiens">
         <a>Ils nous soutiennent</a>
       </NextLink>
     </div> */}
