@@ -54,7 +54,7 @@ const CardContent = ({ card }) => (
             <RichText render={number.text} />
           </div>
           {index === card.numbers.length - 1 && (
-            <p className="mt-4 uppercase text-micro">{card.numberssources}</p>
+            <p className="mt-4 uppercase text-micro">{card.numbersSources}</p>
           )}
         </div>
       ))}

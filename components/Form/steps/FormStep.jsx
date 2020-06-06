@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import textPropType from '../../../proptypes/text';
 import Input from '../../Input';
+import RichText from '../../RichText';
 import Step from './Step';
 
-const FormStep = ({ firstname, lastname, email, updateData }) => {
+const FormStep = ({ text, firstname, lastname, email, updateData }) => {
   const onNext = () => {
     // validate data
     // updateData()
@@ -16,9 +18,7 @@ const FormStep = ({ firstname, lastname, email, updateData }) => {
           Je m’engage avec les 9500 autres
         </h2>
         <p className="mt-8">
-          Pour comptabiliser vos engagement, et{' '}
-          <b>recevoir par email l’affiche et les fiches récap</b>, nous avons
-          besoin de quelques informations..{' '}
+          <RichText text={text} />
         </p>
         <div className="mt-8">
           <div className="mb-4 relative">
@@ -41,6 +41,7 @@ const FormStep = ({ firstname, lastname, email, updateData }) => {
 };
 
 FormStep.propTypes = {
+  text: textPropType.isRequired,
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,

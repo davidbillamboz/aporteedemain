@@ -10,11 +10,6 @@ const NavHorizontal = () => (
         <a>Manifesto</a>
       </NextLink>
     </div>
-    {/* <div className="leading-tight font-krub font-bold mr-10 hover:underline hover:text-riptide">
-      <NextLink href="/[slug]" as="/soutiens">
-        <a>Ils nous soutiennent</a>
-      </NextLink>
-    </div> */}
     <div className="leading-tight font-krub font-bold mr-10 hover:underline hover:text-riptide">
       <NextLink href="/contact">
         <a>Contact</a>

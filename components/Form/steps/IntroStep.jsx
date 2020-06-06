@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import textPropType from '../../../proptypes/text';
 import Checkbox from '../../Checkbox';
+import RichText from '../../RichText';
 import Step from './Step';
 
-const ChoicesStep = ({
+const IntroStep = ({
+  title,
+  text,
   cards,
   selectedCards: initialSelectedCards,
   updateData,
@@ -28,9 +32,11 @@ const ChoicesStep = ({
   return (
     <Step onNext={onNext} isValid={selectedCards.length > 0}>
       <h1 className="text-2xl font-bold leading-none text-center md:w-4/6 md:mx-auto md:text-4xl">
-        À vous de choisir !<br />
-        Quelles thématiques vous intéressent ?
+        {title}
       </h1>
+      <div className="mt-6 md:text-center">
+        <RichText text={text} />
+      </div>
       <div className="md:grid md:grid-cols-3 md:gap-4 md:my-12 md:max-w-5xl md:mx-auto">
         {cards.map((card) => (
           <div
@@ -67,10 +73,12 @@ const ChoicesStep = ({
   );
 };
 
-ChoicesStep.propTypes = {
+IntroStep.propTypes = {
+  title: PropTypes.string.isRequired,
+  text: textPropType.isRequired,
   cards: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedCards: PropTypes.arrayOf(PropTypes.string).isRequired,
   updateData: PropTypes.func.isRequired,
 };
 
-export default ChoicesStep;
+export default IntroStep;

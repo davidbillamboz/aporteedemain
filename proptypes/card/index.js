@@ -4,6 +4,7 @@ import imagePropType from '../image';
 import cardNumberPropType from './number';
 import cardCommitmentPropType from './commitment';
 import cardResourcePropType from './resource';
+import metadataPropType from '../metadata';
 
 export {
   cardNumberPropType as number,
@@ -14,12 +15,13 @@ export {
 export default PropTypes.shape({
   id: PropTypes.string.isRequired,
   uid: PropTypes.string.isRequired,
+  metadata: metadataPropType,
   title: PropTypes.string.isRequired,
   image: imagePropType.isRequired,
   subtitle: PropTypes.string,
   text: textPropType.isRequired,
   numbers: PropTypes.arrayOf(cardNumberPropType).isRequired,
-  numberssources: PropTypes.string,
+  numbersSources: PropTypes.string,
   question: PropTypes.string.isRequired,
   commitments1: PropTypes.arrayOf(cardCommitmentPropType).isRequired,
   commitments2title: PropTypes.string,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cardPropType from '../../proptypes/card';
 import StepsContainer from './StepsContainer';
-import ChoicesStep from './steps/ChoicesStep';
+import IntroStep from './steps/IntroStep';
 import FormStep from './steps/FormStep';
 import FinalStep from './steps/FinalStep';
 import CardContentStep from './steps/CardContentStep';
@@ -11,7 +11,7 @@ import Wizard from './Wizard';
 import ProgressBar from './ProgressBar';
 import { getCardById } from './utils';
 
-const Form = ({ cards }) => {
+const Form = ({ cards, introStep, formStep, finalStep }) => {
   const steps = [];
   const [data, setData] = useState({
     selectedCards: [],
@@ -25,9 +25,10 @@ const Form = ({ cards }) => {
 
   // Build steps
   steps.push({
-    Component: ChoicesStep,
+    Component: IntroStep,
     props: {
       cards,
+      ...introStep,
       selectedCards: data.selectedCards,
       updateData: ({ selectedCards }) => {
         setData({
@@ -66,6 +67,7 @@ const Form = ({ cards }) => {
     Component: FormStep,
     props: {
       ...data.form,
+      ...formStep,
       updateData: (newData) => {
         setData({
           ...data,
@@ -76,7 +78,9 @@ const Form = ({ cards }) => {
   });
   steps.push({
     Component: FinalStep,
-    props: {},
+    props: {
+      ...finalStep,
+    },
   });
   return (
     <Wizard stepCount={steps.length}>
@@ -88,6 +92,9 @@ const Form = ({ cards }) => {
 
 Form.propTypes = {
   cards: PropTypes.arrayOf(cardPropType).isRequired,
+  introStep: PropTypes.shape({}).isRequired,
+  formStep: PropTypes.shape({}).isRequired,
+  finalStep: PropTypes.shape({}).isRequired,
 };
 
 export default Form;

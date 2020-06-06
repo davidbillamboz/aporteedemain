@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import DefaultErrorPage from 'next/error';
-import { fetchPage, fetchAllPages } from '../lib/prismic';
+import { fetchPage, fetchAllPages, fetchDefaultMetadata } from '../lib/prismic';
+import metadataPropType from '../proptypes/metadata';
 import textPropType from '../proptypes/text';
+import Metadata from '../components/Metadata';
 import RichText from '../components/RichText';
 
-const ContentPage = ({ page }) => {
+const ContentPage = ({ metadata, page }) => {
   if (!page) {
     return (
       <>
@@ -18,14 +20,18 @@ const ContentPage = ({ page }) => {
     );
   }
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold leading-none mb-8">{page.title}</h1>
-      <RichText text={page.text} />
-    </div>
+    <>
+      <Metadata {...metadata} />
+      <div className="container mx-auto py-12 px-4">
+        <h1 className="text-4xl font-bold leading-none mb-8">{page.title}</h1>
+        <RichText text={page.text} />
+      </div>
+    </>
   );
 };
 
 ContentPage.propTypes = {
+  metadata: metadataPropType.isRequired,
   page: PropTypes.shape({
     title: PropTypes.string.isRequired,
     text: textPropType.isRequired,
@@ -37,12 +43,23 @@ ContentPage.defaultProps = {
 };
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const page = await fetchPage(params.slug, previewData);
-
+  const { metadata: pageMetadata, ...page } = await fetchPage(
+    params.slug,
+    previewData
+  );
+  const defaultMetadata = await fetchDefaultMetadata(previewData);
+  const url = `${process.env.BASE_URL}/${params.slug}`;
+  const metadata = {
+    ...defaultMetadata,
+    title: page.title,
+    ...pageMetadata,
+    url,
+  };
   return {
     props: {
-      page,
       preview,
+      page,
+      metadata,
     },
     unstable_revalidate: 5,
   };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faDownload,
@@ -6,10 +7,12 @@ import {
   faLink,
 } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import textPropType from '../../../../proptypes/text';
+import RichText from '../../../RichText';
 import Step from '../Step';
 import ShareButton from './ShareButton';
 
-const FinalStep = () => {
+const FinalStep = ({ title, text, titleSocial }) => {
   const onNext = () => {
     // validate data
     return true;
@@ -17,13 +20,9 @@ const FinalStep = () => {
   return (
     <Step onNext={onNext} withoutNavigation>
       <div className="max-w-md mx-auto md:text-center">
-        <h2 className="text-3xl font-bold leading-none">
-          Je m’engage à partager le kit #ÀPortéeDeMain au travail
-        </h2>
-        <div className="font-krub font-semibold mt-8">Prêt·e à agir ?</div>
-        <div>
-          Téléchargez le kit #ÀPortéeDeMain, partagez-le, affichez-le,
-          discutez-en et provoquez le changement autour de vous !
+        <h2 className="text-3xl font-bold leading-none">{title}</h2>
+        <div className="mt-8">
+          <RichText text={text} />
         </div>
         <div className="mt-6 mb-10">
           <button
@@ -37,9 +36,7 @@ const FinalStep = () => {
             <span className="inline-block">Télécharger le kit</span>
           </button>
         </div>
-        <h2 className="text-3xl font-bold leading-none">
-          J’en parle autour de moi pour faire bouger les choses
-        </h2>
+        <h2 className="text-3xl font-bold leading-none">{titleSocial}</h2>
         <div className="flex justify-between mt-10 max-w-xs mx-auto">
           <ShareButton icon={faFacebookF} />
           <ShareButton icon={faTwitter} />
@@ -49,6 +46,12 @@ const FinalStep = () => {
       </div>
     </Step>
   );
+};
+
+FinalStep.propTypes = {
+  title: PropTypes.string.isRequired,
+  text: textPropType.isRequired,
+  titleSocial: PropTypes.string.isRequired,
 };
 
 export default FinalStep;
