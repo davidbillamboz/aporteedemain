@@ -11,7 +11,7 @@ import MainButton from '../components/buttons/MainButton';
 const IndexPage = ({ metadata, page }) => (
   <>
     <Metadata {...metadata} />
-    <div className="relative aspect-ratio-kvSquare sm:aspect-ratio-kvWide">
+    <div className="relative aspect-ratio-square sm:aspect-ratio-kvWide">
       <picture className="absolute top-0 left-0">
         <source
           media="(max-width: 639px)"
@@ -27,7 +27,7 @@ const IndexPage = ({ metadata, page }) => (
         />
       </picture>
     </div>
-    <div className="relative -mt-8 px-4 pb-8 md:-mt-16 lg:-mt-32">
+    <div className="relative -mt-4 px-4 pb-8 md:-mt-16 lg:-mt-32">
       <div className="shadow px-4 py-6 text-center rounded-large bg-white max-w-md mx-auto">
         <h1 className="uppercase text-5xl font-bold leading-none font-krub lg:text-6xl">
           À Portée
