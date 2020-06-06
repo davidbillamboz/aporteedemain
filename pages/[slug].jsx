@@ -67,7 +67,14 @@ export async function getStaticProps({ params, preview = false, previewData }) {
 
 export async function getStaticPaths() {
   const pages = await fetchAllPages();
-  const paths = pages?.map(({ uid }) => `/${uid}`) || [];
+  const paths = !pages
+    ? []
+    : pages
+        ?.filter(({ uid }) => {
+          return !['contact', 'kit'].includes(uid);
+        })
+        .map(({ uid }) => `/${uid}`);
+
   return {
     paths,
     fallback: true,
