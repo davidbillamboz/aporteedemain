@@ -31,7 +31,7 @@ const FormStep = ({ text, firstname, lastname, email, updateData }) => {
             <Input type="email" placeholder="Adresse email" />
           </div>
           <div className="text-micro font-krub uppercase px-4 leading-tight">
-            Promis pas de pub, on vous tiens juste au courant pour la suite du
+            Promis pas de pub, on vous tient juste au courant pour la suite du
             projet
           </div>
         </div>
