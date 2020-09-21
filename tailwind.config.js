@@ -1,6 +1,10 @@
 const tailwindAspectRatioPlugin = require('tailwindcss-aspect-ratio');
 
 module.exports = {
+  future: {
+    purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+  },
   purge: ['./components/**/*.jsx', './pages/**/*.jsx'],
   theme: {
     extend: {

@@ -1,7 +1,4 @@
-const withPlugins = require('next-compose-plugins');
-const optimizedImages = require('next-optimized-images');
-
-module.exports = withPlugins([[optimizedImages, {}]], {
+module.exports = {
   env: {
     FACEBOOK_PAGE_URL: 'http://facebook.com/aporteedemain',
     TWITTER_NICKNAME: 'aporteedemain',
@@ -14,4 +11,4 @@ module.exports = withPlugins([[optimizedImages, {}]], {
     PRISMIC_REPOSITORY_LOCALE:
       process.env.APORTEDEMAIN_PRISMIC_REPOSITORY_LOCALE,
   },
-});
+}
