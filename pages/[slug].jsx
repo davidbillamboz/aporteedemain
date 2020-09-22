@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import DefaultErrorPage from 'next/error';
-import { fetchPage, fetchAllPages, fetchDefaultMetadata } from '../lib/prismic';
+import { fetchPage, fetchDefaultMetadata } from '../lib/prismic';
 import metadataPropType from '../proptypes/metadata';
 import textPropType from '../proptypes/text';
 import Metadata from '../components/Metadata';
@@ -43,10 +43,8 @@ ContentPage.defaultProps = {
 };
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const { metadata: pageMetadata, ...page } = await fetchPage(
-    params.slug,
-    previewData
-  );
+  const data = await fetchPage(params.slug, previewData);
+  const { metadata: pageMetadata, ...page } = data;
   const defaultMetadata = await fetchDefaultMetadata(previewData);
   const url = `${process.env.BASE_URL}/${params.slug}`;
   const metadata = {
@@ -66,18 +64,9 @@ export async function getStaticProps({ params, preview = false, previewData }) {
 }
 
 export async function getStaticPaths() {
-  const pages = await fetchAllPages();
-  const paths = !pages
-    ? []
-    : pages
-        ?.filter(({ uid }) => {
-          return !['contact', 'kit'].includes(uid);
-        })
-        .map(({ uid }) => `/${uid}`);
-
   return {
-    paths,
-    fallback: true,
+    paths: ['/kit', '/contact', '/manifesto', '/mentions-legales'],
+    fallback: false,
   };
 }
 
