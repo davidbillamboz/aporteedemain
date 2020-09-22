@@ -12,7 +12,7 @@ const ShareButton = ({ icon }) => (
 );
 
 ShareButton.propTypes = {
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.shape({}).isRequired,
 };
 
 export default ShareButton;
