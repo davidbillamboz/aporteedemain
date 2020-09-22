@@ -85,9 +85,9 @@ const FormStep = ({
           <h2 className="text-3xl font-bold leading-none">
             Je m’engage avec les {committerCount} autres
           </h2>
-          <p className="mt-8">
+          <div className="mt-8">
             <RichText text={text} />
-          </p>
+          </div>
           <div className="mt-8">
             <div className="mb-4 relative">
               <Input
