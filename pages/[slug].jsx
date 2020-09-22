@@ -1,23 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head';
-import DefaultErrorPage from 'next/error';
 import { fetchPage, fetchDefaultMetadata } from '../lib/prismic';
 import metadataPropType from '../proptypes/metadata';
 import textPropType from '../proptypes/text';
 import Metadata from '../components/Metadata';
 import RichText from '../components/RichText';
+import Page404 from './404';
 
 const ContentPage = ({ metadata, page }) => {
   if (!page) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-        </Head>
-        <DefaultErrorPage statusCode={404} />
-      </>
-    );
+    return <Page404 />;
   }
   return (
     <>
@@ -31,7 +23,7 @@ const ContentPage = ({ metadata, page }) => {
 };
 
 ContentPage.propTypes = {
-  metadata: metadataPropType.isRequired,
+  metadata: metadataPropType,
   page: PropTypes.shape({
     title: PropTypes.string.isRequired,
     text: textPropType.isRequired,
@@ -39,11 +31,15 @@ ContentPage.propTypes = {
 };
 
 ContentPage.defaultProps = {
+  metadata: null,
   page: null,
 };
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const data = await fetchPage(params.slug, previewData);
+  if (!data) {
+    return { props: {}, unstable_revalidate: 5 };
+  }
   const { metadata: pageMetadata, ...page } = data;
   const defaultMetadata = await fetchDefaultMetadata(previewData);
   const url = `${process.env.BASE_URL}/${params.slug}`;

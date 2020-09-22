@@ -1,6 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
-import DefaultErrorPage from 'next/error';
 import {
   fetchCard,
   fetchAllCards,
@@ -11,17 +9,11 @@ import CardContent from '../../components/Card/Content';
 import CardForm from '../../components/Card/Form';
 import cardPropType from '../../proptypes/card';
 import metadataPropType from '../../proptypes/metadata';
+import Page404 from '../404';
 
 const CardPage = ({ metadata, card }) => {
   if (!card) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-        </Head>
-        <DefaultErrorPage statusCode={404} />
-      </>
-    );
+    return <Page404 />;
   }
   return (
     <>
@@ -35,19 +27,21 @@ const CardPage = ({ metadata, card }) => {
 };
 
 CardPage.propTypes = {
-  metadata: metadataPropType.isRequired,
+  metadata: metadataPropType,
   card: cardPropType,
 };
 
 CardPage.defaultProps = {
+  metadata: null,
   card: null,
 };
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const { metadata: pageMetadata, ...card } = await fetchCard(
-    params.slug,
-    previewData
-  );
+  const data = await fetchCard(params.slug, previewData);
+  if (!data) {
+    return { props: {}, unstable_revalidate: 5 };
+  }
+  const { metadata: pageMetadata, ...card } = data;
   const defaultMetadata = await fetchDefaultMetadata(previewData);
   const url = `${process.env.BASE_URL}/${params.slug}`;
   const metadata = {

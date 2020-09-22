@@ -4,33 +4,21 @@ import NextLink from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const Button = ({ children, ...rest }) => (
-  <button type="button" {...rest}>
-    {children}
-  </button>
-);
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-const Link = ({ children, href, ...rest }) => (
-  <NextLink href={href}>
-    <a {...rest}>{children}</a>
-  </NextLink>
-);
-
-Link.propTypes = {
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
-};
-
 const MainButton = ({ title, disabled, href, ...rest }) => {
-  const Component = href ? Link : Button;
+  const wrapButton = (element) => {
+    if (href) {
+      return (
+        <NextLink href={href}>
+          <a>{element}</a>
+        </NextLink>
+      );
+    }
+    return element;
+  };
 
-  return (
-    <Component
-      href={href}
+  return wrapButton(
+    <button
+      type="button"
       className={`rounded-full bg-chelseaCucumber text-white ${
         !disabled ? 'hover:bg-opacity-95' : 'opacity-50 cursor-default'
       } font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow
@@ -42,7 +30,7 @@ const MainButton = ({ title, disabled, href, ...rest }) => {
         className="inline-block mr-2 w-10 h-auto"
       />
       <span className="inline-block">{title}</span>
-    </Component>
+    </button>
   );
 };
 
