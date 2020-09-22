@@ -1,3 +1,3 @@
-export function getCardById(cards, cardId) {
-  return cards.find((aCard) => aCard.id === cardId);
+export function getCardByUid(cards, cardUid) {
+  return cards.find((aCard) => aCard.uid === cardUid);
 }

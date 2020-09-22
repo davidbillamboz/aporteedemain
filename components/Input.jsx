@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, placeholder }) => (
+const Input = ({ register, error, ...rest }) => (
   <input
-    className="border-solid border-2 border-gray focus:border-deepKoamaru rounded px-4 py-4 w-full"
-    type={type}
-    placeholder={placeholder}
+    className={`outline-none border-solid border-2 rounded px-4 py-4 w-full ${
+      error
+        ? 'border-red-500 focus:border-red-600'
+        : 'border-gray focus:border-deepKoamaru'
+    }`}
+    ref={register}
+    {...rest}
   />
 );
 
 Input.propTypes = {
-  type: PropTypes.string,
-  placeholder: PropTypes.string,
+  register: PropTypes.func,
+  error: PropTypes.shape({}),
 };
 
 Input.defaultProps = {
-  type: 'text',
-  placeholder: '',
+  register: null,
+  error: null,
 };
 
 export default Input;

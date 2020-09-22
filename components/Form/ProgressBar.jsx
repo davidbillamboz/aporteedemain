@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ProgressCircle from '../ProgressCircle';
 import { Context } from './Wizard';
-import { getCardById } from './utils';
+import { getCardByUid } from './utils';
 
 const ProgressBar = ({ selectedCards, cards }) => {
   const { index } = useContext(Context);
@@ -23,8 +23,8 @@ const ProgressBar = ({ selectedCards, cards }) => {
     return 0;
   };
 
-  const visualSteps = selectedCards.map((cardId, cardIndex) => {
-    const card = getCardById(cards, cardId);
+  const visualSteps = selectedCards.map((cardUid, cardIndex) => {
+    const card = getCardByUid(cards, cardUid);
     return {
       title: card.theme,
       progress: getStepProgress(cardIndex),

@@ -9,9 +9,9 @@ import CardContentStep from './steps/CardContentStep';
 import CardFormStep from './steps/CardFormStep';
 import Wizard from './Wizard';
 import ProgressBar from './ProgressBar';
-import { getCardById } from './utils';
+import { getCardByUid } from './utils';
 
-const Form = ({ cards, introStep, formStep, finalStep }) => {
+const Form = ({ cards, introStep, formStep, finalStep, committerCount }) => {
   const steps = [];
   const [data, setData] = useState({
     selectedCards: [],
@@ -23,7 +23,7 @@ const Form = ({ cards, introStep, formStep, finalStep }) => {
     },
   });
 
-  // Build steps
+  // Intro step
   steps.push({
     Component: IntroStep,
     props: {
@@ -38,36 +38,46 @@ const Form = ({ cards, introStep, formStep, finalStep }) => {
       },
     },
   });
-  data.selectedCards.forEach((cardId) => {
-    const card = getCardById(cards, cardId);
+
+  // For each cards
+  data.selectedCards.forEach((cardUid) => {
+    const card = getCardByUid(cards, cardUid);
+
+    // First card step
     steps.push({
       Component: CardContentStep,
       props: {
         card,
       },
     });
+
+    // Commitments card step
     steps.push({
       Component: CardFormStep,
       props: {
         card,
-        selectedCommitments: data.selectedCommitments[cardId],
+        selectedCommitments: data.selectedCommitments[cardUid],
         updateData: ({ selectedCommitments }) => {
           setData({
             ...data,
             selectedCommitments: {
               ...data.selectedCommitments,
-              [cardId]: selectedCommitments,
+              [cardUid]: selectedCommitments,
             },
           });
         },
       },
     });
   });
+
+  // Form step
   steps.push({
     Component: FormStep,
     props: {
-      ...data.form,
+      ...data,
+      cards,
       ...formStep,
+      committerCount,
       updateData: (newData) => {
         setData({
           ...data,
@@ -76,12 +86,15 @@ const Form = ({ cards, introStep, formStep, finalStep }) => {
       },
     },
   });
+
+  // Final step
   steps.push({
     Component: FinalStep,
     props: {
       ...finalStep,
     },
   });
+
   return (
     <Wizard stepCount={steps.length}>
       <ProgressBar selectedCards={data.selectedCards} cards={cards} />
@@ -95,6 +108,7 @@ Form.propTypes = {
   introStep: PropTypes.shape({}).isRequired,
   formStep: PropTypes.shape({}).isRequired,
   finalStep: PropTypes.shape({}).isRequired,
+  committerCount: PropTypes.number.isRequired,
 };
 
 export default Form;

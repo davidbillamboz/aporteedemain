@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cardPropType from '../../../../proptypes/card';
+import Navigation from '../../Navigation';
 import Step from '../Step';
 import CardForm from '../../../Card/Form';
 
@@ -38,12 +39,13 @@ const CardFormStep = ({
   };
 
   return (
-    <Step onPrevious={onExit} onNext={onExit}>
+    <Step>
       <CardForm
         card={card}
         onCommitmentChange={onCommitmentChange}
         selectedCommitments={selectedCommitments}
       />
+      <Navigation onPrevious={onExit} onNext={onExit} />
     </Step>
   );
 };

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import textPropType from '../../../proptypes/text';
 import Checkbox from '../../Checkbox';
 import RichText from '../../RichText';
+import Navigation from '../Navigation';
 import Step from './Step';
 
 const IntroStep = ({
@@ -13,24 +14,25 @@ const IntroStep = ({
   updateData,
 }) => {
   const [selectedCards, setSelectedCards] = useState(initialSelectedCards);
+  const isValid = selectedCards.length > 0;
 
   const onNext = () => {
     updateData({ selectedCards });
     return true;
   };
 
-  const onClickCard = (cardId) => {
-    if (selectedCards.includes(cardId)) {
+  const onClickCard = (cardUid) => {
+    if (selectedCards.includes(cardUid)) {
       const newSelectedCards = [...selectedCards];
-      newSelectedCards.splice(newSelectedCards.indexOf(cardId), 1);
+      newSelectedCards.splice(newSelectedCards.indexOf(cardUid), 1);
       setSelectedCards(newSelectedCards);
       return;
     }
-    setSelectedCards([...selectedCards, cardId]);
+    setSelectedCards([...selectedCards, cardUid]);
   };
 
   return (
-    <Step onNext={onNext} isValid={selectedCards.length > 0}>
+    <Step>
       <h1 className="text-2xl font-bold leading-none text-center md:w-4/6 md:mx-auto md:text-4xl">
         {title}
       </h1>
@@ -40,9 +42,9 @@ const IntroStep = ({
       <div className="md:grid md:grid-cols-3 md:gap-4 md:my-12 md:max-w-5xl md:mx-auto">
         {cards.map((card) => (
           <div
-            key={card.id}
+            key={card.uid}
             className="flex items-center mt-4 md:block md:text-center md:shadow md:rounded-lg md:cursor-pointer"
-            onClick={() => onClickCard(card.id)}
+            onClick={() => onClickCard(card.uid)}
           >
             <div className="w-28 -ml-4 flex-shrink-0 md:mx-0 md:w-full md:h-auto">
               <div className="aspect-ratio-square relative">
@@ -63,12 +65,14 @@ const IntroStep = ({
                 </div>
               </div>
               <div className="md:flex md:justify-center md:mt-4">
-                <Checkbox checked={selectedCards.includes(card.id)} />
+                <Checkbox checked={selectedCards.includes(card.uid)} />
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      <Navigation onNext={onNext} nextEnabled={isValid} />
     </Step>
   );
 };

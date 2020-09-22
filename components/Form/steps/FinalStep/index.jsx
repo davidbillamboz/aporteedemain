@@ -13,12 +13,8 @@ import Step from '../Step';
 import ShareButton from './ShareButton';
 
 const FinalStep = ({ title, text, titleSocial }) => {
-  const onNext = () => {
-    // validate data
-    return true;
-  };
   return (
-    <Step onNext={onNext} withoutNavigation>
+    <Step>
       <div className="max-w-md mx-auto md:text-center">
         <h2 className="text-3xl font-bold leading-none">{title}</h2>
         <div className="mt-8">

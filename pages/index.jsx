@@ -7,8 +7,9 @@ import textPropType from '../proptypes/text';
 import Metadata from '../components/Metadata';
 import RichTech from '../components/RichText';
 import MainButton from '../components/buttons/MainButton';
+import { getStats } from './api/stats';
 
-const IndexPage = ({ metadata, page }) => (
+const IndexPage = ({ metadata, page, committerCount }) => (
   <>
     <Metadata {...metadata} />
     <div className="relative aspect-ratio-square sm:aspect-ratio-kvWide">
@@ -43,7 +44,7 @@ const IndexPage = ({ metadata, page }) => (
         <div className="mt-6 flex justify-center">
           <MainButton title="Découvrez" href="/engagement" />
         </div>
-        <div className="mt-2">Déjà 1285 engagé·e·s</div>
+        <div className="mt-2">Déjà {committerCount} engagé·e·s</div>
       </div>
     </div>
   </>
@@ -57,6 +58,7 @@ IndexPage.propTypes = {
     catchline: PropTypes.string.isRequired,
     text: textPropType.isRequired,
   }).isRequired,
+  committerCount: PropTypes.number.isRequired,
 };
 
 export async function getStaticProps({ preview = false, previewData }) {
@@ -64,11 +66,13 @@ export async function getStaticProps({ preview = false, previewData }) {
   const defaultMetadata = await fetchDefaultMetadata(previewData);
   const url = `${process.env.BASE_URL}/`;
   const metadata = { ...defaultMetadata, ...pageMetadata, url };
+  const stats = await getStats();
   return {
     props: {
       preview,
       metadata,
       page,
+      committerCount: stats.committers || 0,
     },
     unstable_revalidate: 5,
   };

@@ -4,7 +4,7 @@ import { ChevronLeft as ChevronLeftIcon } from 'react-feather';
 import MainButton from '../buttons/MainButton';
 import { Context } from './Wizard';
 
-const Navigation = ({ onNext, onPrevious, nextEnabled }) => (
+const Navigation = ({ onNext, onPrevious, nextEnabled, isSubmit }) => (
   <Context.Consumer>
     {({ loadPreviousStep, loadNextStep, isFirstStep }) => (
       <div className="flex justify-center items-center mt-8">
@@ -19,8 +19,9 @@ const Navigation = ({ onNext, onPrevious, nextEnabled }) => (
         </button>
         <MainButton
           title="continuer"
+          type={isSubmit ? 'submit' : 'button'}
           onClick={async () =>
-            nextEnabled && (await onNext()) && loadNextStep()
+            nextEnabled && !isSubmit && (await onNext()) && loadNextStep()
           }
           disabled={!nextEnabled}
         />
@@ -30,9 +31,17 @@ const Navigation = ({ onNext, onPrevious, nextEnabled }) => (
 );
 
 Navigation.propTypes = {
-  onPrevious: PropTypes.func.isRequired,
-  onNext: PropTypes.func.isRequired,
-  nextEnabled: PropTypes.bool.isRequired,
+  onPrevious: PropTypes.func,
+  onNext: PropTypes.func,
+  nextEnabled: PropTypes.bool,
+  isSubmit: PropTypes.bool,
+};
+
+Navigation.defaultProps = {
+  onPrevious: () => true,
+  onNext: () => true,
+  nextEnabled: true,
+  isSubmit: false,
 };
 
 export default Navigation;

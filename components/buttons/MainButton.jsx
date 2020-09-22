@@ -33,7 +33,8 @@ const MainButton = ({ title, disabled, href, ...rest }) => {
       href={href}
       className={`rounded-full bg-chelseaCucumber text-white ${
         !disabled ? 'hover:bg-opacity-95' : 'opacity-50 cursor-default'
-      } font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow`}
+      } font-extrabold tracking-wider uppercase text-xl h-20 px-6 leading-none flex items-center shadow
+      `}
       {...rest}
     >
       <FontAwesomeIcon
