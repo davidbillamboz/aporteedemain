@@ -12,7 +12,7 @@ import RichText from '../../../RichText';
 import Step from '../Step';
 import ShareButton from './ShareButton';
 
-const FinalStep = ({ title, text, titleSocial }) => {
+const FinalStep = ({ title, text, button, titleSocial }) => {
   return (
     <Step>
       <div className="max-w-md mx-auto md:text-center">
@@ -21,16 +21,18 @@ const FinalStep = ({ title, text, titleSocial }) => {
           <RichText text={text} />
         </div>
         <div className="mt-6 mb-10">
-          <button
-            type="button"
-            className="rounded-full bg-deepKoamaru hover:bg-opacity-75 text-white font-extrabold tracking-wider uppercase text-base h-16 px-4 leading-none flex items-center shadow sm:text-xl sm:h-20 sm:px-6 md:mx-auto"
-          >
-            <FontAwesomeIcon
-              icon={faDownload}
-              className="inline-block mr-2 w-8 h-auto sm:w-10"
-            />
-            <span className="inline-block">Télécharger le kit</span>
-          </button>
+          <a href="/api/kit" download>
+            <button
+              type="button"
+              className="rounded-full bg-deepKoamaru hover:bg-opacity-75 text-white font-extrabold tracking-wider uppercase text-base h-16 px-4 leading-none flex items-center shadow sm:text-xl sm:h-20 sm:px-6 md:mx-auto"
+            >
+              <FontAwesomeIcon
+                icon={faDownload}
+                className="inline-block mr-2 w-8 h-auto sm:w-10"
+              />
+              <span className="inline-block">{button.title}</span>
+            </button>
+          </a>
         </div>
         <h2 className="text-3xl font-bold leading-none">{titleSocial}</h2>
         <div className="flex justify-between mt-10 max-w-xs mx-auto">
@@ -47,6 +49,9 @@ const FinalStep = ({ title, text, titleSocial }) => {
 FinalStep.propTypes = {
   title: PropTypes.string.isRequired,
   text: textPropType.isRequired,
+  button: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   titleSocial: PropTypes.string.isRequired,
 };
 
