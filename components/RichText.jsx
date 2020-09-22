@@ -7,8 +7,14 @@ const propsWithUniqueKey = (props, key) => {
 };
 
 const hyperLinkSerializer = (element, children, key) => {
-  const targetAttr = element.data.target ? { target: element.data.target } : {};
-  const relAttr = element.data.target ? { rel: 'noopener' } : {};
+  let targetAttr = element.data.target ? { target: element.data.target } : {};
+
+  if (element.data.link_type === 'Media') {
+    targetAttr = { target: '_blank' };
+  }
+
+  const relAttr = targetAttr.target === '_blank' ? { rel: 'noopener' } : {};
+
   const props = {
     className: 'underline',
     href: element.data.url,
