@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
+import NextLink from 'next/link';
+import { useForm, Controller } from 'react-hook-form';
 import textPropType from '../../../proptypes/text';
 import fetchJson from '../../../lib/fetchJson';
 import Input from '../../Input';
 import RichText from '../../RichText';
+import Checkbox from '../../Checkbox';
 import { Context } from '../Wizard';
 import Navigation from '../Navigation';
 import Step from './Step';
@@ -19,12 +21,22 @@ const FormStep = ({
   const [isLoading, setIsLoading] = useState(false);
   const [globalError, setGlobalError] = useState(null);
   const { loadNextStep } = useContext(Context);
-  const { register, handleSubmit, errors, getValues, setError } = useForm({
+  const {
+    register,
+    handleSubmit,
+    errors,
+    getValues,
+    setError,
+    control,
+  } = useForm({
     defaultValues: {
+      privacy: false,
+      newsletter: false,
       ...form,
     },
   });
   const isValid = !errors || !errors.length;
+  const hasPrivacyError = Boolean(errors && errors.privacy);
 
   const handleError = (err) => {
     switch (err) {
@@ -114,9 +126,57 @@ const FormStep = ({
                 error={errors && errors.email}
               />
             </div>
-            <div className="text-micro font-krub uppercase px-4 leading-tight">
-              Promis pas de pub, on vous tient juste au courant pour la suite du
-              projet
+            <div className="mt-4 flex">
+              <Controller
+                control={control}
+                name="newsletter"
+                render={({ onChange, value, name }) => (
+                  <div
+                    className="flex cursor-default"
+                    onClick={() => onChange(!value)}
+                  >
+                    <Checkbox checked={value} id="newsletter" name={name} />
+                    <span className="ml-4">
+                      Je souhaite recevoir les actualités du projet
+                    </span>
+                  </div>
+                )}
+              />
+            </div>
+            <div className="mt-4 flex">
+              <Controller
+                control={control}
+                name="privacy"
+                render={({ onChange, value, name }) => (
+                  <div
+                    className="flex cursor-default"
+                    onClick={() => onChange(!value)}
+                  >
+                    <Checkbox
+                      checked={value}
+                      id="privacy"
+                      name={name}
+                      error={hasPrivacyError}
+                    />
+                    <span
+                      className={`ml-4 ${
+                        hasPrivacyError ? 'text-red-500' : ''
+                      }`}
+                    >
+                      J’accepte{' '}
+                      <NextLink
+                        href="/[slug]"
+                        as="/politique-de-confidentialite"
+                      >
+                        <a className="underline" target="_blank" rel="noopener">
+                          la politique de confidentialité
+                        </a>
+                      </NextLink>
+                    </span>
+                  </div>
+                )}
+                rules={{ validate: (value) => value }}
+              />
             </div>
             {globalError && (
               <div className="text-red-500 mt-4 text-center">{globalError}</div>
