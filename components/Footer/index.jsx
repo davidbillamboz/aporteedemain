@@ -20,6 +20,9 @@ const Footer = () => (
         <Link href="/[slug]" as="/mentions-legales">
           Mentions légales
         </Link>
+        <Link href="/[slug]" as="/politique-de-confidentialite">
+          Politique de confidentialité
+        </Link>
       </nav>
       <div className="mt-6 sm:mx-auto">
         <SocialButtons size="small" />
