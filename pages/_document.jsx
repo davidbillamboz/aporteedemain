@@ -29,16 +29,19 @@ class MyDocument extends Document {
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('consent', 'default', {
-                      'ad_storage': 'denied',
-                      'analytics_storage': 'denied'
-                    });                    
-                    gtag('js', new Date());
-                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}', {
-                      page_path: window.location.pathname,
-                    });
+                    var doNotTrack = navigator.doNotTrack ? navigator.doNotTrack === "1" || navigator.doNotTrack === "yes": (window.doNotTrack? window.doNotTrack === "1": false);
+                    if (!doNotTrack) {
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('consent', 'default', {
+                        'ad_storage': 'denied',
+                        'analytics_storage': 'denied'
+                      });                    
+                      gtag('js', new Date());
+                      gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}', {
+                        page_path: window.location.pathname,
+                      });
+                    }
                   `,
                 }}
               />
