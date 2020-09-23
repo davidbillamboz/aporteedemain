@@ -61,7 +61,13 @@ export async function getStaticProps({ params, preview = false, previewData }) {
 
 export async function getStaticPaths() {
   return {
-    paths: ['/kit', '/contact', '/manifesto', '/mentions-legales'],
+    paths: [
+      '/kit',
+      '/contact',
+      '/manifesto',
+      '/mentions-legales',
+      '/politique-de-confidentialite',
+    ],
     fallback: false,
   };
 }
