@@ -34,7 +34,8 @@
     "responsive-loader": "2.1.1",
     "sharp": "0.26.1",
     "tailwindcss": "1.8.10",
-    "tailwindcss-aspect-ratio": "3.0.0"
+    "tailwindcss-aspect-ratio": "3.0.0",
+    "tarteaucitronjs": "1.5.0"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",

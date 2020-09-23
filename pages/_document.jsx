@@ -14,39 +14,40 @@ class MyDocument extends Document {
     return (
       <Html className="bg-white antialiased">
         <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;700&family=Montserrat:wght@400;600;700;800&display=swap"
-            rel="stylesheet"
+          <script
+            type="text/javascript"
+            src="/tarteaucitronjs/tarteaucitron.js"
           />
           {isProduction && (
-            <>
-              {/* Global Site Tag (gtag.js) - Google Analytics */}
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}`}
-              />
-              <script
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    var doNotTrack = navigator.doNotTrack ? navigator.doNotTrack === "1" || navigator.doNotTrack === "yes": (window.doNotTrack? window.doNotTrack === "1": false);
-                    if (!doNotTrack) {
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('consent', 'default', {
-                        'ad_storage': 'denied',
-                        'analytics_storage': 'denied'
-                      });                    
-                      gtag('js', new Date());
-                      gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}', {
-                        page_path: window.location.pathname,
-                      });
-                    }
-                  `,
-                }}
-              />
-            </>
+            <script
+              type="text/javascript"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: `
+                tarteaucitron.user.gtagUa = '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}';
+                tarteaucitron.user.gtagMore = function () {};
+                (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
+              `,
+              }}
+            />
           )}
+          <script
+            type="text/javascript"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `
+              tarteaucitron.init({
+                orientation: 'bottom',
+                privacyUrl: '/politique-de-confidentialite',
+                highPrivacy: true, /* Disable auto consent */
+                removeCredit: true,
+                cookieName: 'tarteaucitron', /* Cookie name */
+                showAlertSmall: false, /* Show the small banner on bottom right */
+                handleBrowserDNTRequest: true,
+              });              
+              `,
+            }}
+          />
         </Head>
         <body className="font-body text-deepKoamaru">
           <Main />
